@@ -105,7 +105,7 @@
             else
             {
 
-                $sql = "select * from canbo where hoten like '%$search1%' or chucvu like '%$search2%' and bomon_id like '%$search2%'";
+                $sql = "select * from canbo where hoten like '%$search1%' and bomon_id like '%$search2%'";
 
                 include('connect.php');
                 

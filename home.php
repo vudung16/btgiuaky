@@ -22,10 +22,25 @@
         text-align: center;
         margin-bottom: 50px;
     }
+
+    .login {
+        text-align: right;
+    }
+
+    button {
+        margin: 50px 200px 0px 0px;
+    }
+
+    button a {
+        color: #ffffff;
+    }
     </style>
 </head>
 
 <body>
+    <div class="login">
+        <button class="btn btn-primary"><a href="login.php">Đăng nhập</a></button>
+    </div>
 
     <div class="home">
         <h3>Bảng Khoa</h3><br>
@@ -78,7 +93,19 @@
         ?>
         </table><br>
         <form action="search.php" method="get">
-            Search: <input type="text" name="searchbomon" />
+            Tên: <input type="text" name="searchbomon" /><br><br>
+            Khoa: <select name="lockhoa" id="">
+                <?php 
+                include('connect.php');
+                $sql = "SELECT * FROM khoa";
+                $result = mysqli_query($connect, $sql);
+                if(mysqli_num_rows($result) > 0) {
+                    while ( $row = mysqli_fetch_assoc($result) ) {
+                        echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
+                    }
+                }
+            ?>
+            </select><br><br>
             <input type="submit" name="search2" value="search" />
         </form>
 
@@ -114,7 +141,19 @@
         ?>
         </table><br>
         <form action="search.php" method="get">
-            Search: <input type="text" name="searchcanbo" />
+            Search: <input type="text" name="searchcanbo" /><br><br>
+            Bộ môn: <select name="locbomon" id="">
+                <?php 
+                include('connect.php');
+                $sql = "SELECT * FROM bomon";
+                $result = mysqli_query($connect, $sql);
+                if(mysqli_num_rows($result) > 0) {
+                    while ( $row = mysqli_fetch_assoc($result) ) {
+                        echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
+                    }
+                }
+            ?>
+            </select><br><br>
             <input type="submit" name="search3" value="search" />
         </form>
     </div>
